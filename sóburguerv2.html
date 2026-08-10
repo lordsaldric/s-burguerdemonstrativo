@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Só Burger Delivery | O melhor burger para matar sua fome 🍔</title>
+<meta name="description" content="Hambúrguer artesanal em Porto Velho e Ariquemes - RO. Carne suculenta, queijo derretendo e aquele sabor que faz você pedir de novo. Peça agora pelo delivery." />
+<meta property="og:title" content="Só Burger Delivery | O melhor burger para matar sua fome 🍔" />
+<meta property="og:description" content="Hambúrguer artesanal de verdade. Peça agora e mate sua fome." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    /* === Liquid Glass Gastronomic — paleta laranja/ketchup/mostarda === */
+    --blue-deep:#341206;      /* orange-burnt: base quente, um degrau acima do fundo mais escuro */
+    --blue-deeper:#1B0904;    /* orange-deep: fundo mais profundo, usado nas seções alternadas */
+    --flame:#C81D25;          /* ketchup-red: ponta "queimada" do gradiente dos CTAs */
+    --flame-light:#FF7A1A;    /* orange-main: laranja vivo, início do gradiente dos CTAs */
+    --gold:#F2A900;           /* mustard: preços, badges, detalhes de destaque */
+    --offwhite:#FBEFDD;       /* cream: texto claro sobre o fundo quente */
+    --graphite:#2A1206;       /* dark-brown: texto escuro sobre badges de mostarda */
+    --glass-bg:rgba(255,176,96,0.07);
+    --glass-bg-strong:rgba(255,176,96,0.12);
+    --glass-border:rgba(255,206,150,0.20);
+    --ketchup:#D42A20;
+    --mustard:#F2A900;
+    --dark-brown:#170702;
+  }
+  *{-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 90% 55% at 18% -8%, rgba(255,138,40,0.22), transparent 62%),
+      radial-gradient(ellipse 55% 40% at 92% 6%, rgba(242,169,0,0.10), transparent 60%),
+      radial-gradient(ellipse 70% 45% at 50% 100%, rgba(200,29,32,0.14), transparent 60%),
+      linear-gradient(180deg, var(--blue-deep) 0%, var(--dark-brown) 100%);
+    color:var(--offwhite);
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    overflow-x:hidden;
+  }
+  .font-display{font-family:'Bebas Neue',sans-serif; letter-spacing:0.01em;}
+  .font-mono{font-family:'JetBrains Mono',monospace;}
+
+  /* Grain / noise texture over dark bg for depth */
+  .grain::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .glass{
+    background:var(--glass-bg);
+    backdrop-filter:blur(18px) saturate(150%);
+    -webkit-backdrop-filter:blur(18px) saturate(150%);
+    border:1px solid var(--glass-border);
+    box-shadow:0 8px 32px rgba(20,6,2,0.45), inset 0 1px 0 rgba(255,214,170,0.10);
+  }
+  .glass-strong{
+    background:var(--glass-bg-strong);
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:0 12px 40px rgba(20,6,2,0.5), inset 0 1px 0 rgba(255,214,170,0.14);
+  }
+  .glass-shine{position:relative; overflow:hidden;}
+  .glass-shine::after{
+    content:""; position:absolute; top:-60%; left:-20%; width:60%; height:220%;
+    background:linear-gradient(120deg, rgba(255,220,180,0) 0%, rgba(255,220,180,0.22) 50%, rgba(255,220,180,0) 100%);
+    transform:rotate(20deg); transition:left 0.7s ease;
+  }
+  .glass-shine:hover::after{left:120%;}
+
+  .btn-flame{
+    background:linear-gradient(135deg, var(--flame-light), var(--flame));
+    box-shadow:0 8px 24px rgba(216,42,32,0.5), inset 0 1px 0 rgba(255,220,180,0.25);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-flame:hover{transform:translateY(-2px) scale(1.02); box-shadow:0 12px 32px rgba(216,42,32,0.6), inset 0 1px 0 rgba(255,220,180,0.3);}
+  .btn-flame:active{transform:translateY(0) scale(0.98);}
+
+  .btn-ghost{
+    border:1px solid rgba(251,239,221,0.3);
+    transition:all .25s ease;
+  }
+  .btn-ghost:hover{background:rgba(251,239,221,0.08); border-color:rgba(251,239,221,0.55);}
+
+  .card-hover{transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;}
+  .card-hover:hover{transform:translateY(-6px);}
+
+  .combo-card{transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; transform-origin:center bottom;}
+  .combo-card:hover{transform:scale(1.06) translateY(-4px); box-shadow:0 20px 45px rgba(0,0,0,0.4);}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  .glow-flame{
+    background:radial-gradient(circle at 50% 45%, rgba(255,138,40,0.55), rgba(216,42,32,0.20) 45%, rgba(216,42,32,0) 72%);
+    filter:blur(6px);
+  }
+  .glow-gold{
+    background:radial-gradient(circle, rgba(242,169,0,0.5), rgba(242,169,0,0) 70%);
+  }
+
+  @keyframes floaty{0%,100%{transform:translateY(0px) rotate(0deg);}50%{transform:translateY(-14px) rotate(2deg);}}
+  .floaty{animation:floaty 6s ease-in-out infinite;}
+  .floaty-slow{animation:floaty 9s ease-in-out infinite;}
+  .floaty-rev{animation:floaty 7s ease-in-out infinite reverse;}
+
+  @keyframes pulseGlow{0%,100%{opacity:0.7; transform:scale(1);}50%{opacity:1; transform:scale(1.06);}}
+  .pulse-glow{animation:pulseGlow 4.5s ease-in-out infinite;}
+
+  @keyframes steam{
+    0%{transform:translateY(0) scaleX(1); opacity:0;}
+    15%{opacity:0.55;}
+    100%{transform:translateY(-70px) scaleX(1.6); opacity:0;}
+  }
+  .steam{animation:steam 3.2s ease-in infinite;}
+
+  .plate{
+    background:radial-gradient(ellipse 60% 60% at 50% 40%, rgba(242,169,0,0.22), rgba(216,42,32,0.12) 55%, rgba(0,0,0,0) 75%);
+  }
+
+  .burger-emoji-shadow{filter:drop-shadow(0 20px 30px rgba(0,0,0,0.5));}
+
+  ::selection{background:var(--flame); color:white;}
+
+  .scrollbar-none::-webkit-scrollbar{display:none;}
+  .scrollbar-none{-ms-overflow-style:none; scrollbar-width:none;}
+
+  #site-header{transition:top .45s cubic-bezier(.22,1,.36,1);}
+  #site-header .header-inner{transition:padding .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;}
+  #site-header .brand-name{
+    display:inline-block; overflow:hidden; white-space:nowrap;
+    max-width:140px; opacity:1;
+    transition:max-width .45s cubic-bezier(.22,1,.36,1), opacity .3s ease .05s, margin .45s cubic-bezier(.22,1,.36,1);
+  }
+  #site-header .logo-badge{transition:width .45s cubic-bezier(.22,1,.36,1), height .45s cubic-bezier(.22,1,.36,1), font-size .45s cubic-bezier(.22,1,.36,1);}
+  #site-header .cart-badge{transition:width .45s cubic-bezier(.22,1,.36,1), height .45s cubic-bezier(.22,1,.36,1);}
+  #site-header .cta-nav{transition:padding .45s cubic-bezier(.22,1,.36,1), font-size .45s cubic-bezier(.22,1,.36,1);}
+  #site-header nav{transition:gap .45s cubic-bezier(.22,1,.36,1);}
+  #site-header.scrolled{top:0.4rem;}
+  #site-header.scrolled .header-inner{padding-top:0.3rem; padding-bottom:0.3rem; padding-left:0.5rem; padding-right:0.6rem; box-shadow:0 10px 30px rgba(0,0,0,0.45);}
+  #site-header.scrolled .brand-name{max-width:0; opacity:0; margin-left:-4px; transition:max-width .45s cubic-bezier(.22,1,.36,1), opacity .2s ease, margin .45s cubic-bezier(.22,1,.36,1);}
+  #site-header.scrolled .logo-badge{width:1.75rem; height:1.75rem; font-size:0.85rem;}
+  #site-header.scrolled .cart-badge{width:2rem; height:2rem;}
+  #site-header.scrolled .cta-nav{padding-top:0.5rem; padding-bottom:0.5rem; padding-left:0.9rem; padding-right:0.9rem; font-size:0.7rem;}
+  #site-header.scrolled nav{gap:0.85rem;}
+
+  .cat-pill{transition:all .25s ease;}
+  .cat-pill.active{
+    background:linear-gradient(135deg, var(--flame-light), var(--flame));
+    border-color:transparent;
+    color:white;
+  }
+
+  .badge-pop{transition:transform .2s ease;}
+  .card-hover:hover .badge-pop{transform:rotate(-6deg) scale(1.05);}
+
+  input[type="text"]:focus, button:focus-visible, a:focus-visible{
+    outline:2px solid var(--gold); outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  .mobile-cta-safe{padding-bottom:calc(1rem + env(safe-area-inset-bottom));}
+
+  /* ===== Progressão de fundo por seção (ritmo visual no scroll) ===== */
+  .sec-hero{
+    background:
+      radial-gradient(ellipse 90% 60% at 50% -15%, rgba(255,138,40,0.30), transparent 62%),
+      radial-gradient(ellipse 60% 40% at 85% 90%, rgba(242,169,0,0.10), transparent 60%);
+  }
+  .sec-content{
+    background:linear-gradient(180deg, var(--blue-deeper) 0%, #200b04 100%);
+  }
+  .sec-menu{
+    background:
+      radial-gradient(ellipse 65% 45% at 85% 0%, rgba(242,169,0,0.08), transparent 60%),
+      radial-gradient(ellipse 55% 40% at 5% 100%, rgba(216,42,32,0.10), transparent 60%),
+      linear-gradient(180deg, var(--blue-deep) 0%, #200b04 100%);
+  }
+  .sec-feature{
+    background:
+      radial-gradient(circle at 50% 50%, rgba(216,42,32,0.22), transparent 62%),
+      #120502;
+  }
+  .sec-combo{
+    background:linear-gradient(180deg, #2A0F06 0%, #1B0904 100%);
+  }
+  .sec-social{
+    background:#120502;
+  }
+  .sec-cta{
+    background:
+      radial-gradient(ellipse 85% 65% at 50% 105%, rgba(255,138,40,0.32), transparent 62%),
+      linear-gradient(180deg, var(--blue-deep) 0%, #3a1508 100%);
+  }
+
+  /* ===== Ramificações de ketchup / mostarda — textura de fundo discreta ===== */
+  .sauce{
+    position:absolute; pointer-events:none; z-index:0; opacity:0.16;
+    filter:blur(1.5px);
+  }
+  .sauce path{ vector-effect:non-scaling-stroke; }
+  .sauce-ketchup{ color:var(--ketchup); }
+  .sauce-mustard{ color:var(--mustard); }
+  @media (max-width:640px){
+    .sauce{opacity:0.09;}
+    .sauce-reduce-mobile{display:none;}
+  }
+</style>
+</head>
+<body class="grain">
+
+<!-- ================= HEADER ================= -->
+<header id="site-header" class="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300">
+  <div class="header-inner glass rounded-full px-4 sm:px-6 py-2.5 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 shrink-0">
+      <span class="logo-badge w-9 h-9 rounded-full btn-flame flex items-center justify-center text-lg shrink-0">🍔</span>
+      <span class="brand-name font-display text-xl sm:text-2xl tracking-wide">SÓ BURGER</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-7 font-medium text-sm text-[color:var(--offwhite)]/85">
+      <a href="#top" class="hover:text-white transition-colors">Início</a>
+      <a href="#cardapio" class="hover:text-white transition-colors">Cardápio</a>
+      <a href="#combos" class="hover:text-white transition-colors">Combos</a>
+      <a href="#sobre" class="hover:text-white transition-colors">Sobre nós</a>
+      <a href="#footer" class="hover:text-white transition-colors">Contato</a>
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button id="cart-btn" class="cart-badge relative w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Ver carrinho">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span id="cart-count" class="absolute -top-1.5 -right-1.5 bg-[color:var(--gold)] text-[10px] font-bold text-[color:var(--graphite)] rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+      </button>
+      <a href="#cardapio" class="cta-nav hidden sm:inline-flex btn-flame text-white font-bold text-sm px-5 py-2.5 rounded-full">PEDIR AGORA</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="top" class="sec-hero relative min-h-[100svh] flex items-center pt-28 pb-16 px-5 sm:px-8 overflow-hidden">
+  <!-- ramificações de ketchup/mostarda -->
+  <svg class="sauce sauce-ketchup sauce-reduce-mobile absolute -top-6 -left-10 w-[300px] sm:w-[420px] h-auto -rotate-12" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+    <path d="M120,70 C135,45 120,20 150,15" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+    <circle cx="250" cy="140" r="5" fill="currentColor" opacity="0.5"/>
+  </svg>
+  <svg class="sauce sauce-mustard absolute -bottom-10 -right-10 w-[260px] sm:w-[380px] h-auto rotate-[150deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="320" cy="205" r="3.5" fill="currentColor" opacity="0.4"/>
+  </svg>
+  <!-- background glows -->
+  <div class="absolute -top-20 -left-24 w-[420px] h-[420px] rounded-full glow-flame pulse-glow"></div>
+  <div class="absolute bottom-0 -right-16 w-[360px] h-[360px] rounded-full glow-gold floaty-slow"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[color:var(--blue-deeper)]"></div>
+
+  <div class="relative max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-[color:var(--gold)] glass rounded-full px-4 py-1.5 mb-6">
+        🔥 Feito na hora · Porto Velho &amp; Ariquemes
+      </span>
+      <h1 class="font-display text-[15vw] sm:text-6xl md:text-6xl lg:text-7xl leading-[0.95] mb-5">
+        MORDEU.<br>
+        <span class="text-[color:var(--flame-light)]">APAIXONOU.</span><br>
+        PEDIU DE NOVO.
+      </h1>
+      <p class="text-base sm:text-lg text-[color:var(--offwhite)]/75 max-w-md mb-8 leading-relaxed">
+        Hambúrguer artesanal, ingredientes de verdade e aquele sabor que faz você esquecer da dieta por alguns minutos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <a href="#cardapio" class="btn-flame text-white font-bold text-center px-7 py-4 rounded-2xl text-base">🍔 PEDIR MEU BURGER</a>
+        <a href="#cardapio" class="btn-ghost glass rounded-2xl text-center px-7 py-4 font-semibold text-base">VER CARDÁPIO</a>
+      </div>
+      <div class="flex items-center gap-6 mt-9 text-sm text-[color:var(--offwhite)]/60">
+        <div><span class="font-display text-2xl text-white block">40mil+</span>seguidores</div>
+        <div class="w-px h-8 bg-white/15"></div>
+        <div><span class="font-display text-2xl text-white block">4.9★</span>avaliação média</div>
+        <div class="w-px h-8 bg-white/15"></div>
+        <div><span class="font-display text-2xl text-white block">-25min</span>tempo médio</div>
+      </div>
+    </div>
+
+    <!-- hero burger glass dome -->
+    <div class="reveal relative flex items-center justify-center h-[380px] sm:h-[460px] md:h-[520px]">
+      <div class="absolute w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] rounded-full glow-flame pulse-glow"></div>
+      <div class="absolute w-[260px] h-[60px] sm:w-[320px] sm:h-[70px] bottom-6 rounded-full plate blur-sm"></div>
+
+      <div class="relative floaty">
+        <div class="w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] rounded-full glass-strong glass-shine flex items-center justify-center text-[100px] sm:text-[140px] burger-emoji-shadow">
+          🍔
+        </div>
+        <span class="steam absolute -top-2 left-1/2 -translate-x-1/2 text-3xl opacity-0">〰️</span>
+      </div>
+
+      <!-- floating glass badges -->
+      <div class="absolute top-2 left-0 sm:-left-4 glass rounded-2xl px-4 py-2.5 floaty-rev">
+        <span class="font-mono text-xs text-[color:var(--gold)]">⭐ Favorito da galera</span>
+      </div>
+      <div class="absolute bottom-8 right-0 sm:-right-6 glass rounded-2xl px-4 py-2.5 floaty">
+        <span class="font-mono text-xs text-[color:var(--flame-light)]">🔥 Mais pedido</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POR QUE SÓ BURGER ================= -->
+<section id="sobre" class="sec-content relative py-24 px-5 sm:px-8 overflow-hidden">
+  <svg class="sauce sauce-mustard sauce-reduce-mobile absolute -top-8 -right-16 w-[340px] h-auto rotate-[35deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+    <path d="M250,140 C270,170 300,175 320,205" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+  </svg>
+  <div class="max-w-6xl mx-auto relative">
+    <div class="reveal text-center max-w-2xl mx-auto mb-14">
+      <p class="font-mono text-xs text-[color:var(--gold)] mb-3 tracking-widest">POR QUE SÓ BURGER?</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight">Não é só um hambúrguer.<br>É <span class="text-[color:var(--flame-light)]">O</span> hambúrguer.</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="reveal glass card-hover rounded-3xl p-6">
+        <div class="text-3xl mb-4">🍔</div>
+        <h3 class="font-display text-xl mb-2 tracking-wide">CARNE DE VERDADE</h3>
+        <p class="text-sm text-[color:var(--offwhite)]/65 leading-relaxed">Preparada para entregar aquele sabor que você sente na primeira mordida.</p>
+      </div>
+      <div class="reveal glass card-hover rounded-3xl p-6">
+        <div class="text-3xl mb-4">🔥</div>
+        <h3 class="font-display text-xl mb-2 tracking-wide">FEITO NA HORA</h3>
+        <p class="text-sm text-[color:var(--offwhite)]/65 leading-relaxed">Nada de burger sem graça esperando horas. Seu pedido vai pra chapa quando você pede.</p>
+      </div>
+      <div class="reveal glass card-hover rounded-3xl p-6">
+        <div class="text-3xl mb-4">🧀</div>
+        <h3 class="font-display text-xl mb-2 tracking-wide">INGREDIENTES QUE DÃO VONTADE</h3>
+        <p class="text-sm text-[color:var(--offwhite)]/65 leading-relaxed">Queijo derretendo, molho especial e combinações que funcionam.</p>
+      </div>
+      <div class="reveal glass card-hover rounded-3xl p-6">
+        <div class="text-3xl mb-4">🚀</div>
+        <h3 class="font-display text-xl mb-2 tracking-wide">DELIVERY DE VERDADE</h3>
+        <p class="text-sm text-[color:var(--offwhite)]/65 leading-relaxed">Seu pedido chega pronto para acabar com a fome. Rápido, quente e do jeito certo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CARDÁPIO ================= -->
+<section id="cardapio" class="sec-menu relative py-24 px-5 sm:px-8 overflow-hidden">
+  <svg class="sauce sauce-ketchup sauce-reduce-mobile absolute bottom-0 -left-16 w-[380px] h-auto rotate-[95deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="250" cy="140" r="5" fill="currentColor" opacity="0.5"/>
+  </svg>
+  <div class="max-w-6xl mx-auto relative">
+    <div class="reveal text-center max-w-xl mx-auto mb-10">
+      <h2 class="font-display text-4xl sm:text-5xl mb-3">Escolha seu pecado. 🍔</h2>
+      <p class="text-[color:var(--offwhite)]/65">Difícil vai ser escolher só um.</p>
+    </div>
+
+    <div id="cat-pills" class="reveal flex gap-2.5 overflow-x-auto scrollbar-none pb-2 mb-10 justify-start sm:justify-center">
+      <!-- injected by JS -->
+    </div>
+
+    <div id="menu-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUTO EM DESTAQUE ================= -->
+<section class="sec-feature relative py-24 px-5 sm:px-8 overflow-hidden">
+  <svg class="sauce sauce-mustard sauce-reduce-mobile absolute top-0 right-0 w-[320px] h-auto rotate-[-20deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full glow-flame opacity-60"></div>
+  <div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div class="reveal order-2 md:order-1 flex justify-center">
+      <div class="relative floaty">
+        <div class="w-[240px] h-[240px] sm:w-[340px] sm:h-[340px] rounded-full glass-strong glass-shine flex items-center justify-center text-[120px] sm:text-[170px] burger-emoji-shadow">
+          🍔
+        </div>
+        <div class="absolute -top-3 -left-3 glass rounded-2xl px-3 py-2 font-mono text-[11px] text-[color:var(--gold)] floaty-rev">⭐ Favorito da galera</div>
+        <div class="absolute -bottom-3 -right-3 glass rounded-2xl px-3 py-2 font-mono text-[11px] text-[color:var(--flame-light)] floaty">🔥 Mais pedido</div>
+      </div>
+    </div>
+    <div class="reveal order-1 md:order-2">
+      <p class="font-mono text-xs text-[color:var(--gold)] mb-3 tracking-widest">O MAIS PEDIDO</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight mb-4">Bacon Monster</h2>
+      <p class="text-[color:var(--offwhite)]/75 mb-1 italic">"Esse aqui não fica disponível por muito tempo."</p>
+      <p class="text-[color:var(--offwhite)]/65 mb-6 leading-relaxed">Carne suculenta, muito queijo, bacon crocante e molho especial da casa. O burger que virou desculpa pra pedir de novo na próxima semana.</p>
+      <div class="flex items-center gap-4 mb-7">
+        <span class="font-mono text-3xl text-[color:var(--gold)]">R$ 32,90</span>
+      </div>
+      <button class="add-to-cart-featured btn-flame text-white font-bold px-8 py-4 rounded-2xl">QUERO ESSE 🍔</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMBOS ================= -->
+<section id="combos" class="sec-combo relative py-24 px-5 sm:px-8 overflow-hidden">
+  <svg class="sauce sauce-ketchup sauce-reduce-mobile absolute -top-10 right-0 w-[300px] h-auto rotate-[70deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="290" cy="120" r="4" fill="currentColor" opacity="0.5"/>
+  </svg>
+  <div class="max-w-6xl mx-auto relative">
+    <div class="reveal text-center max-w-xl mx-auto mb-14">
+      <h2 class="font-display text-4xl sm:text-5xl mb-3">Quer facilitar sua vida?<br>Pega o combo.</h2>
+    </div>
+    <div id="combo-grid" class="grid sm:grid-cols-3 gap-6">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROVA SOCIAL ================= -->
+<section class="sec-social relative py-24 px-5 sm:px-8 overflow-hidden">
+  <svg class="sauce sauce-mustard sauce-reduce-mobile absolute bottom-0 -left-10 w-[280px] h-auto rotate-[-100deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <div class="max-w-6xl mx-auto relative">
+    <div class="reveal text-center max-w-xl mx-auto mb-14">
+      <h2 class="font-display text-4xl sm:text-5xl">Quem prova, volta.</h2>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-6 mb-14">
+      <div class="reveal glass rounded-3xl p-6">
+        <p class="text-[color:var(--gold)] mb-3">★★★★★</p>
+        <p class="text-sm text-[color:var(--offwhite)]/75 leading-relaxed mb-4">Simplesmente absurdo. O burger chegou quente e estava muito bom, igual da foto.</p>
+        <p class="font-mono text-xs text-[color:var(--offwhite)]/50">— Cliente Só Burger</p>
+      </div>
+      <div class="reveal glass rounded-3xl p-6">
+        <p class="text-[color:var(--gold)] mb-3">★★★★★</p>
+        <p class="text-sm text-[color:var(--offwhite)]/75 leading-relaxed mb-4">Esse cheddar devia ser considerado patrimônio nacional. Sério.</p>
+        <p class="font-mono text-xs text-[color:var(--offwhite)]/50">— Cliente Só Burger</p>
+      </div>
+      <div class="reveal glass rounded-3xl p-6">
+        <p class="text-[color:var(--gold)] mb-3">★★★★★</p>
+        <p class="text-sm text-[color:var(--offwhite)]/75 leading-relaxed mb-4">Pedi uma vez. Agora virou problema toda semana.</p>
+        <p class="font-mono text-xs text-[color:var(--offwhite)]/50">— Cliente Só Burger</p>
+      </div>
+    </div>
+    <div class="reveal flex flex-wrap justify-center gap-8 text-center">
+      <div><span class="font-display text-3xl block text-[color:var(--flame-light)]">+40 mil</span><span class="text-xs text-[color:var(--offwhite)]/60">seguidores</span></div>
+      <div><span class="font-display text-3xl block text-[color:var(--flame-light)]">milhares</span><span class="text-xs text-[color:var(--offwhite)]/60">de pedidos entregues</span></div>
+      <div><span class="font-display text-3xl block text-[color:var(--flame-light)]">★★★★★</span><span class="text-xs text-[color:var(--offwhite)]/60">clientes satisfeitos</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSTAGRAM ================= -->
+<section class="relative py-24 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center max-w-xl mx-auto mb-12">
+      <h2 class="font-display text-4xl sm:text-5xl mb-3">A fome também segue a gente.</h2>
+      <a href="#" class="text-sm font-semibold text-[color:var(--flame-light)] hover:underline">VER NO INSTAGRAM →</a>
+    </div>
+    <div class="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
+      <div class="reveal aspect-square rounded-2xl glass card-hover flex items-center justify-center text-4xl">🍔</div>
+      <div class="reveal aspect-square rounded-2xl glass card-hover flex items-center justify-center text-4xl">🍟</div>
+      <div class="reveal aspect-square rounded-2xl glass card-hover flex items-center justify-center text-4xl">🧀</div>
+      <div class="reveal aspect-square rounded-2xl glass card-hover flex items-center justify-center text-4xl">🥓</div>
+      <div class="reveal aspect-square rounded-2xl glass card-hover flex items-center justify-center text-4xl">🥤</div>
+      <div class="reveal aspect-square rounded-2xl glass card-hover flex items-center justify-center text-4xl">🔥</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DELIVERY CTA ================= -->
+<section class="sec-cta relative py-28 px-5 sm:px-8 overflow-hidden">
+  <svg class="sauce sauce-ketchup sauce-reduce-mobile absolute -top-6 left-0 w-[320px] h-auto rotate-[15deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+  </svg>
+  <svg class="sauce sauce-mustard absolute -bottom-8 -right-10 w-[280px] h-auto rotate-[-150deg]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+    <path d="M10,260 C70,180 40,90 120,70 C190,54 175,150 250,140 C320,132 300,50 385,35" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="250" cy="140" r="4" fill="currentColor" opacity="0.45"/>
+  </svg>
+  <div class="absolute inset-0 bg-gradient-to-br from-[color:var(--flame)]/25 via-transparent to-[color:var(--gold)]/10"></div>
+  <div class="absolute top-10 left-10 text-5xl opacity-10 floaty-slow">🍔</div>
+  <div class="absolute bottom-10 right-14 text-6xl opacity-10 floaty">🍟</div>
+  <div class="absolute top-1/2 right-1/4 text-4xl opacity-10 floaty-rev">🧀</div>
+
+  <div class="relative max-w-3xl mx-auto text-center reveal">
+    <h2 class="font-display text-4xl sm:text-6xl mb-4 leading-tight">Tá esperando o quê?</h2>
+    <p class="text-lg text-[color:var(--offwhite)]/75 mb-2">Seu burger não vai se pedir sozinho.</p>
+    <p class="text-[color:var(--offwhite)]/60 mb-9 max-w-md mx-auto">Escolha seu favorito, monte seu pedido e deixe o resto com a gente.</p>
+    <a href="#cardapio" class="btn-flame inline-block text-white font-bold px-10 py-5 rounded-2xl text-lg">PEDIR AGORA 🍔</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer" class="relative pt-16 pb-28 md:pb-16 px-5 sm:px-8 bg-[color:var(--blue-deeper)] border-t border-white/10">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-9 h-9 rounded-full btn-flame flex items-center justify-center text-lg">🍔</span>
+          <span class="font-display text-xl">SÓ BURGER</span>
+        </div>
+        <p class="text-sm text-[color:var(--offwhite)]/55">Só Burger Delivery</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-[color:var(--gold)] mb-3 tracking-widest">NAVEGAÇÃO</p>
+        <ul class="space-y-2 text-sm text-[color:var(--offwhite)]/65">
+          <li><a href="#top" class="hover:text-white">Início</a></li>
+          <li><a href="#cardapio" class="hover:text-white">Cardápio</a></li>
+          <li><a href="#combos" class="hover:text-white">Combos</a></li>
+          <li><a href="#sobre" class="hover:text-white">Sobre</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-[color:var(--gold)] mb-3 tracking-widest">ONDE ESTAMOS</p>
+        <ul class="space-y-2 text-sm text-[color:var(--offwhite)]/65">
+          <li>Porto Velho - RO</li>
+          <li>Ariquemes - RO</li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-[color:var(--gold)] mb-3 tracking-widest">CONTATO</p>
+        <ul class="space-y-2 text-sm text-[color:var(--offwhite)]/65">
+          <li><a href="#" class="hover:text-white">Instagram</a></li>
+          <li><a href="#" class="hover:text-white">WhatsApp</a></li>
+          <li><a href="#" class="hover:text-white">iFood</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
+      <p class="text-xs text-[color:var(--offwhite)]/40">© 2026 Só Burger Delivery. Todos os direitos reservados.</p>
+      <a href="#cardapio" class="btn-flame text-white font-bold px-7 py-3 rounded-full text-sm">BORA PEDIR? 🍔</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= MOBILE STICKY CTA ================= -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pt-3 mobile-cta-safe">
+  <a href="#cardapio" class="glass-strong btn-flame block text-center text-white font-bold py-4 rounded-2xl text-base">
+    🍔 PEDIR AGORA
+  </a>
+</div>
+
+<!-- ================= CART DRAWER ================= -->
+<div id="cart-overlay" class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 transition-opacity duration-300"></div>
+<aside id="cart-drawer" class="fixed top-0 right-0 h-full w-[92%] max-w-sm z-[70] translate-x-full transition-transform duration-400 ease-out">
+  <div class="glass-strong h-full flex flex-col p-6 rounded-l-3xl">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="font-display text-2xl">SEU PEDIDO</h3>
+      <button id="cart-close" class="w-9 h-9 rounded-full glass flex items-center justify-center" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <div id="cart-items" class="flex-1 overflow-y-auto space-y-4 pr-1">
+      <p id="cart-empty" class="text-sm text-[color:var(--offwhite)]/50 text-center mt-10">Seu carrinho tá vazio.<br>Isso a gente resolve rapidinho. 🍔</p>
+    </div>
+    <div class="pt-5 border-t border-white/10 mt-4">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-sm text-[color:var(--offwhite)]/70">Total</span>
+        <span id="cart-total" class="font-mono text-2xl text-[color:var(--gold)]">R$ 0,00</span>
+      </div>
+      <button class="btn-flame w-full text-white font-bold py-4 rounded-2xl">FINALIZAR PEDIDO</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* ============ DADOS DOS PRODUTOS ============
+   Estrutura centralizada — troque nome, descrição, preço, categoria
+   e "img" (emoji placeholder) por imagens reais quando disponíveis.
+   Basta trocar o emoji em "img" por uma tag <img> real no template. */
+const PRODUCTS = [
+  { id:1, nome:"Só Clássico", desc:"Carne artesanal, queijo derretido, molho especial, alface e tomate.", preco:24.90, cat:"burgers", img:"🍔", tag:null },
+  { id:2, nome:"Bacon Monster", desc:"Carne suculenta, muito queijo, bacon crocante e molho especial.", preco:32.90, cat:"burgers", img:"🍔", tag:"Mais pedido" },
+  { id:3, nome:"Cheddar Insano", desc:"Carne artesanal, cheddar cremoso e cebola caramelizada.", preco:29.90, cat:"burgers", img:"🍔", tag:null },
+  { id:4, nome:"Duplo Pecado", desc:"Duas carnes, queijo em dobro e molho da casa.", preco:36.90, cat:"burgers", img:"🍔", tag:"Mais pedido" },
+  { id:5, nome:"Batata Só", desc:"Batata crocante com molho especial da casa.", preco:14.90, cat:"batatas", img:"🍟", tag:null },
+  { id:6, nome:"Batata Cheddar Bacon", desc:"Batata crocante, cheddar cremoso e bacon.", preco:19.90, cat:"batatas", img:"🍟", tag:"Mais pedido" },
+  { id:7, nome:"Coca-Cola Lata", desc:"Gelada, do jeito que tem que ser.", preco:6.90, cat:"bebidas", img:"🥤", tag:null },
+  { id:8, nome:"Suco Natural", desc:"Feito na hora, sabor da fruta de verdade.", preco:8.90, cat:"bebidas", img:"🥤", tag:null },
+  { id:9, nome:"Molho da Casa", desc:"A receita secreta que dá gosto pra tudo.", preco:4.90, cat:"molhos", img:"🥫", tag:null },
+  { id:10, nome:"Molho Barbecue", desc:"Defumado, encorpado e viciante.", preco:4.90, cat:"molhos", img:"🥫", tag:null },
+];
+
+const COMBOS = [
+  { id:"c1", nome:"Combo Só Burger", itens:["🍔 Burger Clássico","🍟 Batata","🥤 Bebida"], de:44.70, por:37.90 },
+  { id:"c2", nome:"Combo Bacon Monster", itens:["🍔 Bacon Monster","🍟 Batata","🥤 Bebida"], de:52.70, por:44.90 },
+  { id:"c3", nome:"Combo Duplo Pecado", itens:["🍔 Duplo Pecado","🍟 Batata Cheddar","🥤 Bebida"], de:59.70, por:49.90 },
+];
+
+const CATS = [
+  { id:"todos", label:"Mais pedidos" },
+  { id:"burgers", label:"Burgers" },
+  { id:"batatas", label:"Batatas" },
+  { id:"bebidas", label:"Bebidas" },
+  { id:"molhos", label:"Molhos" },
+];
+
+let activeCat = "todos";
+let cart = [];
+
+function formatPrice(v){ return "R$ " + v.toFixed(2).replace(".", ","); }
+
+function renderPills(){
+  const wrap = document.getElementById("cat-pills");
+  wrap.innerHTML = CATS.map(c => `
+    <button data-cat="${c.id}" class="cat-pill ${c.id===activeCat?'active':''} glass shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap">
+      ${c.label}
+    </button>
+  `).join("");
+  wrap.querySelectorAll("button").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      activeCat = btn.dataset.cat;
+      renderPills();
+      renderMenu();
+    });
+  });
+}
+
+function renderMenu(){
+  const grid = document.getElementById("menu-grid");
+  let list = PRODUCTS;
+  if(activeCat === "todos"){
+    list = PRODUCTS.filter(p=>p.tag);
+  } else {
+    list = PRODUCTS.filter(p=>p.cat===activeCat);
+  }
+  grid.innerHTML = list.map(p => `
+    <div class="reveal in glass card-hover rounded-2xl sm:rounded-3xl overflow-hidden">
+      <div class="relative h-24 sm:h-44 flex items-center justify-center text-3xl sm:text-7xl bg-gradient-to-br from-white/5 to-black/20">
+        ${p.img}
+        ${p.tag ? `<span class="badge-pop absolute top-1.5 left-1.5 sm:top-3 sm:left-3 glass rounded-full px-2 py-0.5 sm:px-3 sm:py-1 text-[8px] sm:text-[11px] font-mono text-[color:var(--gold)]">🔥 ${p.tag}</span>` : ""}
+      </div>
+      <div class="p-2.5 sm:p-5">
+        <h3 class="font-display text-xs sm:text-xl tracking-wide mb-0.5 sm:mb-1 leading-tight">${p.nome.toUpperCase()}</h3>
+        <p class="hidden sm:block text-sm text-[color:var(--offwhite)]/60 mb-4 leading-snug">${p.desc}</p>
+        <div class="flex items-center justify-between gap-1.5 sm:gap-0">
+          <span class="font-mono text-xs sm:text-lg text-[color:var(--gold)]">${formatPrice(p.preco)}</span>
+          <button data-id="${p.id}" class="add-btn btn-flame text-white text-[10px] sm:text-sm font-bold px-2 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl whitespace-nowrap"><span class="sm:hidden">+ ADD</span><span class="hidden sm:inline">+ ADICIONAR</span></button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".add-btn").forEach(btn=>{
+    const original = btn.innerHTML;
+    btn.addEventListener("click", ()=>{
+      const id = Number(btn.dataset.id);
+      const prod = PRODUCTS.find(p=>p.id===id);
+      addToCart(prod);
+      btn.innerHTML = "✓";
+      btn.classList.add("scale-95");
+      setTimeout(()=>{ btn.innerHTML = original; btn.classList.remove("scale-95"); }, 900);
+    });
+  });
+}
+
+function renderCombos(){
+  const grid = document.getElementById("combo-grid");
+  grid.innerHTML = COMBOS.map(c => `
+    <div class="reveal in glass-strong combo-card rounded-3xl p-6 flex flex-col">
+      <h3 class="font-display text-2xl mb-4">${c.nome.toUpperCase()}</h3>
+      <ul class="space-y-1.5 text-sm text-[color:var(--offwhite)]/75 mb-6 flex-1">
+        ${c.itens.map(i=>`<li>${i}</li>`).join("")}
+      </ul>
+      <div class="flex items-baseline gap-2 mb-4">
+        <span class="text-sm line-through text-[color:var(--offwhite)]/40">${formatPrice(c.de)}</span>
+        <span class="font-mono text-2xl text-[color:var(--gold)]">${formatPrice(c.por)}</span>
+      </div>
+      <button data-id="${c.id}" class="combo-btn btn-flame text-white font-bold py-3 rounded-xl">QUERO MEU COMBO</button>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".combo-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const combo = COMBOS.find(c=>c.id===btn.dataset.id);
+      addToCart({ id: combo.id, nome: combo.nome, preco: combo.por });
+      btn.textContent = "✓ ADICIONADO";
+      setTimeout(()=>{ btn.textContent = "QUERO MEU COMBO"; }, 900);
+    });
+  });
+}
+
+function addToCart(item){
+  const existing = cart.find(i=>i.id===item.id);
+  if(existing){ existing.qty += 1; }
+  else{ cart.push({ id:item.id, nome:item.nome, preco:item.preco, qty:1 }); }
+  renderCart();
+  pulseCartIcon();
+}
+
+function pulseCartIcon(){
+  const btn = document.getElementById("cart-btn");
+  btn.animate([{transform:"scale(1)"},{transform:"scale(1.2)"},{transform:"scale(1)"}], {duration:350, easing:"ease-out"});
+}
+
+function renderCart(){
+  const itemsWrap = document.getElementById("cart-items");
+  const empty = document.getElementById("cart-empty");
+  const countEl = document.getElementById("cart-count");
+  const totalEl = document.getElementById("cart-total");
+
+  const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+  countEl.textContent = totalQty;
+  countEl.classList.toggle("hidden", totalQty===0);
+
+  if(cart.length===0){
+    itemsWrap.innerHTML = "";
+    itemsWrap.appendChild(empty);
+    totalEl.textContent = formatPrice(0);
+    return;
+  }
+
+  itemsWrap.innerHTML = cart.map(i => `
+    <div class="glass rounded-2xl p-4 flex items-center justify-between gap-3">
+      <div>
+        <p class="font-semibold text-sm">${i.nome}</p>
+        <p class="font-mono text-xs text-[color:var(--gold)]">${formatPrice(i.preco)} x ${i.qty}</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button data-id="${i.id}" data-action="minus" class="qty-btn w-7 h-7 rounded-full glass flex items-center justify-center text-sm">−</button>
+        <span class="text-sm w-4 text-center">${i.qty}</span>
+        <button data-id="${i.id}" data-action="plus" class="qty-btn w-7 h-7 rounded-full glass flex items-center justify-center text-sm">+</button>
+      </div>
+    </div>
+  `).join("");
+
+  const total = cart.reduce((s,i)=>s + i.preco*i.qty, 0);
+  totalEl.textContent = formatPrice(total);
+
+  itemsWrap.querySelectorAll(".qty-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const id = btn.dataset.id;
+      const item = cart.find(i=>String(i.id)===String(id));
+      if(!item) return;
+      if(btn.dataset.action==="plus"){ item.qty += 1; }
+      else{ item.qty -= 1; if(item.qty<=0){ cart = cart.filter(i=>i!==item); } }
+      renderCart();
+    });
+  });
+}
+
+document.querySelector(".add-to-cart-featured").addEventListener("click", ()=>{
+  addToCart({ id:2, nome:"Bacon Monster", preco:32.90 });
+});
+
+/* cart drawer open/close */
+const overlay = document.getElementById("cart-overlay");
+const drawer = document.getElementById("cart-drawer");
+function openCart(){
+  overlay.classList.remove("hidden");
+  requestAnimationFrame(()=> overlay.classList.remove("opacity-0"));
+  drawer.classList.remove("translate-x-full");
+}
+function closeCart(){
+  overlay.classList.add("opacity-0");
+  drawer.classList.add("translate-x-full");
+  setTimeout(()=> overlay.classList.add("hidden"), 300);
+}
+document.getElementById("cart-btn").addEventListener("click", openCart);
+document.getElementById("cart-close").addEventListener("click", closeCart);
+overlay.addEventListener("click", closeCart);
+
+/* header shrink on scroll */
+const header = document.getElementById("site-header");
+let scrollTicking = false;
+window.addEventListener("scroll", ()=>{
+  if(scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(()=>{
+    if(window.scrollY > 40){ header.classList.add("scrolled"); }
+    else{ header.classList.remove("scrolled"); }
+    scrollTicking = false;
+  });
+});
+
+/* scroll reveal */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+}, { threshold:0.12 });
+document.querySelectorAll(".reveal").forEach(el=> io.observe(el));
+
+/* init */
+renderPills();
+renderMenu();
+renderCombos();
+renderCart();
+
+/* re-observe dynamically injected reveal nodes (menu/combos already rendered with .in as fallback for no-JS-timing issues) */
+document.querySelectorAll(".reveal:not(.in)").forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>
